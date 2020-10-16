@@ -1,58 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { Button } from "semantic-ui-react";
+// import logo from "./logo.svg";
+// import { Counter } from "./features/counter/Counter";
+import "./App.css";
+import Welcome from "./components/welcome/Welcome";
+import UserContext from "./context/user.context";
 
-function App() {
+const App = () => {
+  // user context controls
+  const [user, setUser] = useState("test");
+  const updateUser = (username) => setUser(username);
+  const userContextValue = { user, updateUser };
+  const getUsernameFromToken = () => {
+    const token = localStorage.getItem("userToken");
+    if (token) {
+      setUser(JSON.parse(atob(token.split(".")[1])).username);
+    }
+  };
+  useEffect(() => getUsernameFromToken(), []);
+
+  const handleLogout = () => {
+    setUser(null);
+    localStorage.removeItem("userToken");
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <UserContext.Provider value={userContextValue}>
+      {user ? <p>{`welcome, ${user}`}</p> : null}
+      <Welcome />
+      <Button onClick={handleLogout} content="logout" />
+    </UserContext.Provider>
   );
-}
+};
 
 export default App;
