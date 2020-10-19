@@ -11,7 +11,6 @@ const App = () => {
     // user context controls
     const [user, setUser] = useState(null);
     const updateUser = (username) => setUser(username);
-    const userContextValue = { user, updateUser };
     const getUsernameFromToken = () => {
         const token = localStorage.getItem("userToken");
         if (token) {
@@ -25,11 +24,19 @@ const App = () => {
         localStorage.removeItem("userToken");
     };
 
+    const userContextValue = {
+        user,
+        userControls: {
+            updateUser,
+            handleLogout,
+        },
+    };
+
     return (
         <UserContext.Provider value={userContextValue}>
-            {user ? <p>{`welcome, ${user}`}</p> : null}
-            <Welcome />
-            <Button onClick={handleLogout} content="logout" />
+            {/* {user ? <p>{`welcome, ${user}`}</p> : null} */}
+            {/* <Welcome /> */}
+            {/* <Button onClick={handleLogout} content="logout" /> */}
             <Landing />
         </UserContext.Provider>
     );
