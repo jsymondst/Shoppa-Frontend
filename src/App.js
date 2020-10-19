@@ -34,9 +34,6 @@ const App = () => {
 
     return (
         <UserContext.Provider value={userContextValue}>
-            {/* {user ? <p>{`welcome, ${user}`}</p> : null} */}
-            {/* <Welcome /> */}
-            {/* <Button onClick={handleLogout} content="logout" /> */}
             <Landing />
         </UserContext.Provider>
     );
