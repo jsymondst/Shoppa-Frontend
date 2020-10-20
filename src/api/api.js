@@ -40,7 +40,6 @@ export const fetchDeleteWithToken = (path) => {
 //     .then((res) => res.json())
 //     .then((data) => {
 //       if (data.user) {
-
 //       }
 //     });
 // };
