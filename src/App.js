@@ -41,7 +41,7 @@ const App = () => {
         <UserContext.Provider value={userContextValue}>
             <Router>
                 <Landing />
-                {/* <Route path="/gubs" component={SomeGubbins} /> */}
+                <Route path="/gubs" component={SomeGubbins} />
             </Router>
         </UserContext.Provider>
     );
