@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Button } from "semantic-ui-react";
 // import logo from "./logo.svg";
 // import { Counter } from "./features/counter/Counter";
@@ -32,9 +33,16 @@ const App = () => {
         },
     };
 
+    const SomeGubbins = () => {
+        return <h3>Gubbins!</h3>;
+    };
+
     return (
         <UserContext.Provider value={userContextValue}>
-            <Landing />
+            <Router>
+                <Landing />
+                {/* <Route path="/gubs" component={SomeGubbins} /> */}
+            </Router>
         </UserContext.Provider>
     );
 };

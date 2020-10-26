@@ -1,8 +1,9 @@
 import React, { useContext, useState } from "react";
-import { Button, Icon } from "semantic-ui-react";
+import { Button, Card, Icon, Hea } from "semantic-ui-react";
 import UserContext from "../../context/user.context";
 import { fetchGetWithToken } from "../../api/api";
 import NewListCard from "./NewListCard";
+import ListCard from "./ListCard";
 
 const Main = () => {
     const { user, userControls } = useContext(UserContext);
@@ -20,8 +21,9 @@ const Main = () => {
     };
 
     const renderLists = () => {
-        const listLis = lists.map((list) => <li>{list.name}</li>);
-        return lists.length > 0 ? <ul>{listLis}</ul> : null;
+        return lists.map((list) => {
+            return <ListCard listDetails={list} />;
+        });
     };
 
     const addList = (newList) => {
@@ -31,8 +33,10 @@ const Main = () => {
     return (
         <div>
             <h1>{`Welcome, ${user}`}</h1>
-            {renderLists()}
-            <NewListCard addList={addList} />
+            <Card.Group>
+                {renderLists()}
+                <NewListCard addList={addList} />
+            </Card.Group>
             <Button onClick={fetchLists}>List Lists</Button>
             <Button onClick={userControls.handleLogout}>Logout</Button>
         </div>
