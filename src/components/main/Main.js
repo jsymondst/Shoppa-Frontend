@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Card, Icon, Hea } from "semantic-ui-react";
 import UserContext from "../../context/user.context";
 import { fetchGetWithToken } from "../../api/api";
@@ -20,14 +20,28 @@ const Main = () => {
             });
     };
 
+    // fetch the lists when we load
+    useEffect(fetchLists, []);
+
     const renderLists = () => {
         return lists.map((list) => {
-            return <ListCard listDetails={list} />;
+            return (
+                <ListCard
+                    listDetails={list}
+                    key={list.id}
+                    deleteList={deleteList}
+                />
+            );
         });
     };
 
     const addList = (newList) => {
         setLists([...lists, newList]);
+    };
+
+    const deleteList = (id) => {
+        const newLists = lists.filter((list) => list.id != id);
+        setLists(newLists);
     };
 
     return (

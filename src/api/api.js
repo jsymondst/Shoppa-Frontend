@@ -16,7 +16,7 @@ export const fetchPostWithToken = (path, payload) => {
     const configObj = {
         method: "POST",
         headers: {
-            Authorization: `Bearer ${this.getToken()}`,
+            Authorization: `Bearer ${getToken()}`,
             "Content-Type": "application/json",
             Accept: "application/json",
         },
@@ -29,7 +29,7 @@ export const fetchDeleteWithToken = (path) => {
     const configObj = {
         method: "DELETE",
         headers: {
-            Authorization: `Bearer ${this.getToken()}`,
+            Authorization: `Bearer ${getToken()}`,
         },
     };
     return fetch(`${API_URL}${path}`, configObj);
