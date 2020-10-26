@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Card, Icon, IconGroup } from "semantic-ui-react";
+import { cardStyle } from "./styles";
 
 export const NewListCard = () => {
     const [active, setActive] = useState(false);
@@ -7,7 +8,7 @@ export const NewListCard = () => {
     const [icon, setIcon] = useState();
 
     return (
-        <Card style={{ height: 300 }}>
+        <Card style={cardStyle}>
             <Card.Content textAlign={"center"}>
                 <Icon.Group size="massive" onClick={() => setActive(!active)}>
                     <Icon name={"circle outline"} color={"grey"} />
