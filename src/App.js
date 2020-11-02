@@ -7,6 +7,8 @@ import "./App.css";
 import Welcome from "./components/welcome/Welcome";
 import UserContext from "./context/user.context";
 import Landing from "./components/landing/Landing";
+import LandingRedirector from "./components/landing/LandingRedirector";
+import Main from "./components/main/Main";
 
 const App = () => {
     // user context controls
@@ -40,8 +42,13 @@ const App = () => {
     return (
         <UserContext.Provider value={userContextValue}>
             <Router>
-                <Landing />
-                <Route path="/gubs" component={SomeGubbins} />
+                {/* <Landing /> */}
+                <LandingRedirector />
+                <Route
+                    path={`/lists`}
+                    render={(routerProps) => <Main {...routerProps} />}
+                />
+                <Route path="/login" render={() => <Welcome />} />
             </Router>
         </UserContext.Provider>
     );

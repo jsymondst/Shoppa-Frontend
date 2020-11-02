@@ -7,13 +7,10 @@ import ListCard from "./ListCard";
 import ListView from "./ListView";
 import ListArea from "./ListArea";
 import { Route, useParams } from "react-router-dom";
-import AllLists from "./AllLists";
 
-const Main = ({ match }) => {
+const AllLists = ({ match }) => {
     const { user, userControls } = useContext(UserContext);
     const [lists, setLists] = useState([]);
-
-    // const { listIndex } = useParams();
 
     const fetchLists = () => {
         fetchGetWithToken("lists")
@@ -26,7 +23,6 @@ const Main = ({ match }) => {
             });
     };
 
-    // fetch the lists when we load
     useEffect(fetchLists, []);
 
     const renderLists = () => {
@@ -50,26 +46,12 @@ const Main = ({ match }) => {
         setLists(newLists);
     };
 
-    // console.log(match.url);
-    // console.log(window);
-
     return (
-        <div>
-            <h1>{`Welcome, ${user}`}</h1>
-
-            <Route exact path="/lists" render={() => <AllLists />} />
-
-            <Route
-                path={`/lists/:listIndex`}
-                render={(routerProps) => <ListView {...routerProps} />}
-            />
-            <Button onClick={fetchLists}>List Lists</Button>
-            <Button onClick={userControls.handleLogout}>Logout</Button>
-            <Button onClick={() => console.log(match.params.listIndex)}>
-                log Listindex
-            </Button>
-        </div>
+        <Card.Group>
+            {renderLists()}
+            <NewListCard addList={addList} />
+        </Card.Group>
     );
 };
 
-export default Main;
+export default AllLists;

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Card, Icon, IconGroup, Header } from "semantic-ui-react";
 import { fetchDeleteWithToken } from "../../api/api";
 import { cardStyle } from "./styles";
@@ -30,7 +31,11 @@ export const ListCard = ({ listDetails, deleteList }) => {
             <Header>
                 <Icon name={listDetails.icon} />
                 {listDetails.name}
-                <p>{listDetails.urlindex}</p>
+                <p>
+                    <Link to={`/lists/${listDetails.urlindex}`}>
+                        {listDetails.urlindex}
+                    </Link>
+                </p>
             </Header>
             <Card.Content>{renderItems()}</Card.Content>
             <button onClick={handleDelete}>DeleteList</button>
