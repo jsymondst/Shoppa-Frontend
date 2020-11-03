@@ -50,16 +50,12 @@ const Landing = () => {
         switch (loginState) {
             case "pending":
                 return <Disconnected checkIn={checkIn} />;
-                break;
             case "in":
                 return <Main />;
-                break;
             case "out":
                 return <Welcome />;
-                break;
             default:
                 return null;
-                break;
         }
     };
 

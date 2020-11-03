@@ -47,16 +47,12 @@ const LandingRedirector = () => {
         switch (loginState) {
             case "pending":
                 return <Disconnected checkIn={checkIn} />;
-                break;
             case "in":
                 return <Main />;
-                break;
             case "out":
                 return <Welcome />;
-                break;
             default:
                 return null;
-                break;
         }
     };
 
@@ -64,18 +60,14 @@ const LandingRedirector = () => {
         switch (loginState) {
             case "pending":
                 return <Disconnected checkIn={checkIn} />;
-                break;
             case "in":
                 // return <Main />;
                 return <Redirect to={"/lists"} />;
-                break;
             case "out":
                 return <Redirect to={"/login"} />;
-                // return <Welcome />;
-                break;
+            // return <Welcome />;
             default:
                 return null;
-                break;
         }
     };
 

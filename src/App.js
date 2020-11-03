@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
 import { Button } from "semantic-ui-react";
 // import logo from "./logo.svg";
 // import { Counter } from "./features/counter/Counter";
@@ -25,6 +25,7 @@ const App = () => {
     const handleLogout = () => {
         setUser(null);
         localStorage.removeItem("userToken");
+        window.location.href = "/";
     };
 
     const userContextValue = {
@@ -43,7 +44,7 @@ const App = () => {
         <UserContext.Provider value={userContextValue}>
             <Router>
                 {/* <Landing /> */}
-                <LandingRedirector />
+                <Route exact path="/" render={() => <LandingRedirector />} />
                 <Route
                     path={`/lists`}
                     render={(routerProps) => <Main {...routerProps} />}
