@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import ListView from "./ListView";
+import ListView from "../listview/ListView";
 
 const ListArea = ({ match }) => {
     console.log("LA Rendered");

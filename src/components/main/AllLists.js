@@ -4,7 +4,7 @@ import UserContext from "../../context/user.context";
 import { fetchGetWithToken } from "../../api/api";
 import NewListCard from "./NewListCard";
 import ListCard from "./ListCard";
-import ListView from "./ListView";
+import ListView from "../listview/ListView";
 import ListArea from "./ListArea";
 import { Route, useParams } from "react-router-dom";
 
