@@ -61,17 +61,14 @@ const LandingRedirector = () => {
             case "pending":
                 return <Disconnected checkIn={checkIn} />;
             case "in":
-                // return <Main />;
                 return <Redirect to={"/lists"} />;
             case "out":
                 return <Redirect to={"/login"} />;
-            // return <Welcome />;
             default:
                 return null;
         }
     };
 
-    // return <div>{renderLanding()}</div>;
     return <div>{redirector()}</div>;
 };
 
