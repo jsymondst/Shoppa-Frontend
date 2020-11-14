@@ -47,16 +47,16 @@ const ListView = ({ match }) => {
         setItems([...items, { name, category, id: tempId, temp: true }]);
     };
 
-    const removeItem = (id) => {
+    const removeItem = (id, callback) => {
         let newItems = items.filter((item) => item.id !== id);
-        setItems(newItems);
+        setItems(newItems, callback);
     };
 
     const updateItem = (id, name, category) => {
         const oldItem = items.find((item) => item.id === id);
-        const newItem = { ...oldItem, name, category };
-        removeItem(id);
-        setItems([...items, newItem]);
+        const newItems = items.filter((item) => item.id !== id);
+        const updatedItem = { ...oldItem, name, category };
+        setItems([...newItems, updatedItem]);
     };
 
     const handleAddCheddar = () => {

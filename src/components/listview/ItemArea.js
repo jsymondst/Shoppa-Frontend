@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import ItemsContext from "../../context/items.context";
+import CategoryBox from "./Category";
+import Item from "./Item";
 
 const ItemArea = () => {
     const { items } = useContext(ItemsContext);
@@ -16,14 +18,11 @@ const ItemArea = () => {
 
         return Object.keys(categoriesObject).map((category) => {
             return (
-                <div>
-                    <h1>{category}</h1>
-                    <ul>
-                        {categoriesObject[category].map((item) => (
-                            <li>{item.name}</li>
-                        ))}
-                    </ul>
-                </div>
+                <CategoryBox category={category} props key={category}>
+                    {categoriesObject[category].map((item) => (
+                        <Item item={item} key={item.id} />
+                    ))}
+                </CategoryBox>
             );
         });
     };
