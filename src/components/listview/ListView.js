@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { fetchGetWithToken } from "../../api/api";
+import { API_URL, fetchGetWithToken } from "../../api/api";
 import { Button } from "semantic-ui-react";
 import { templateList } from "./templateList";
 import ItemsContext from "../../context/items.context";
@@ -80,6 +80,12 @@ const ListView = ({ match }) => {
         },
     };
 
+    const handleFetchExampleItems = () => {
+        fetch(`${API_URL}/exampleitems`)
+            .then((res) => res.json())
+            .then((data) => console.log(data));
+    };
+
     return (
         <div>
             <Link to={"/lists"}>Home</Link>
@@ -91,6 +97,9 @@ const ListView = ({ match }) => {
                 <ItemArea />
             </ItemsContext.Provider>
             <Button onClick={fetchList}>fetch list.</Button>
+            <Button onClick={handleFetchExampleItems}>
+                Fetch exampleitems
+            </Button>
         </div>
     );
 };

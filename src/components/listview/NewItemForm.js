@@ -1,5 +1,6 @@
 import React, { createRef, useContext, useEffect, useState } from "react";
 import { Button, Form, Input } from "semantic-ui-react";
+import { API_URL } from "../../api/api";
 import ItemsContext from "../../context/items.context";
 
 const NewItemForm = () => {
@@ -8,7 +9,10 @@ const NewItemForm = () => {
     const [category, setCategory] = useState("");
     const nameInput = createRef();
 
-    const exampleItems = [
+    const [exampleItems, setExampleItems] = useState([]);
+    const [exampleCategories, setExampleCategories] = useState([]);
+
+    const defaultExampleItems = [
         {
             name: "bananas",
             category: "Produce",
@@ -40,6 +44,20 @@ const NewItemForm = () => {
         }
     };
 
+    const fetchExampleItems = () => {
+        fetch(`${API_URL}/exampleitems`)
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                if (data.exampleitems) {
+                    setExampleItems(data.exampleitems);
+                    setExampleCategories(data.categories);
+                }
+            });
+    };
+
+    useEffect(fetchExampleItems, []);
+
     const namesDataList = () => {
         return (
             <datalist id="names">
@@ -51,15 +69,15 @@ const NewItemForm = () => {
     };
 
     const categoriesDataList = () => {
-        let categories = [];
-        exampleItems.forEach((item) => {
-            if (!categories.some((cat) => cat === item.category)) {
-                categories.push(item.category);
-            }
-        });
+        // let categories = [];
+        // exampleItems.forEach((item) => {
+        //     if (!categories.some((cat) => cat === item.category)) {
+        //         categories.push(item.category);
+        //     }
+        // });
         return (
             <datalist id="categories">
-                {categories.map((category) => (
+                {exampleCategories.map((category) => (
                     <option value={category}>{category}</option>
                 ))}
             </datalist>

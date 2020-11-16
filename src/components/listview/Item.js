@@ -56,7 +56,6 @@ const Item = ({ item }) => {
             ) : (
                 <p>
                     {item.name}
-                    {item.checked ? "✓" : null}
                     <button style={null} onClick={toggleEditable}>
                         edit
                     </button>
@@ -64,7 +63,9 @@ const Item = ({ item }) => {
             )}
 
             <button onClick={handleDelete}>delete</button>
-            <button onClick={handleCheck}>check</button>
+            <button onClick={handleCheck}>
+                {item.checked ? "uncheck" : "check"}
+            </button>
         </div>
     );
 };
