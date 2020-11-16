@@ -59,6 +59,13 @@ const ListView = ({ match }) => {
         setItems([...newItems, updatedItem]);
     };
 
+    const checkItem = (id) => {
+        const oldItem = items.find((item) => item.id === id);
+        const newItems = items.filter((item) => item.id !== id);
+        const updatedItem = { ...oldItem, checked: !oldItem.checked };
+        setItems([...newItems, updatedItem]);
+    };
+
     const handleAddCheddar = () => {
         addItem("cheddar", "Cheese");
     };
@@ -69,6 +76,7 @@ const ListView = ({ match }) => {
             addItem,
             removeItem,
             updateItem,
+            checkItem,
         },
     };
 

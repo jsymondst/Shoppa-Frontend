@@ -12,12 +12,8 @@ const Item = ({ item }) => {
     const toggleEditable = () => {
         if (!editable) {
             thisItem.current.addEventListener("keydown", handleEscapeCancel);
-        } else {
-            // thisItem.current.removeEventListener("keydown", handleEscapeCancel);
         }
         setEditable(!editable);
-        // nameInput.current.setFocus();
-        // thisItem.current.setAttribute("style", "background:red");
     };
 
     const handleEscapeCancel = (e) => {
@@ -31,11 +27,14 @@ const Item = ({ item }) => {
         e.preventDefault();
         itemsControls.updateItem(item.id, name, category);
         toggleEditable();
-        // e.target.addEventListener()
     };
 
     const handleDelete = () => {
         itemsControls.removeItem(item.id);
+    };
+
+    const handleCheck = () => {
+        itemsControls.checkItem(item.id);
     };
 
     return (
@@ -45,24 +44,19 @@ const Item = ({ item }) => {
                     <input
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        // ref={nameInput}
                         autoFocus
                     />
                     <input
                         value={category}
                         onChange={(e) => setCategory(e.target.value)}
                     />
-                    <button
-                        type={"submit"}
-                        // style={{ display: "none" }}
-                    >
-                        Done
-                    </button>
+                    <button type={"submit"}>Done</button>
                     <button onClick={toggleEditable}>Cancel</button>
                 </form>
             ) : (
                 <p>
                     {item.name}
+                    {item.checked ? "✓" : null}
                     <button style={null} onClick={toggleEditable}>
                         edit
                     </button>
@@ -70,8 +64,11 @@ const Item = ({ item }) => {
             )}
 
             <button onClick={handleDelete}>delete</button>
+            <button onClick={handleCheck}>check</button>
         </div>
     );
 };
 
 export default Item;
+
+// ✓
