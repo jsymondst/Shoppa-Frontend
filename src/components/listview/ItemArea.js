@@ -48,10 +48,15 @@ const ItemArea = () => {
 
     return (
         <div>
-            <div style={{ display: "flex" }}>{renderCategories()}</div>
+            <div style={categoryContainerStyle}>{renderCategories()}</div>
             {renderCheckedItems()}
         </div>
     );
 };
 
 export default ItemArea;
+
+const categoryContainerStyle = {
+    display: "flex",
+    justifyContent: "center",
+};

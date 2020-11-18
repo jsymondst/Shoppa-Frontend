@@ -1,0 +1,22 @@
+.navbar {
+    background-color: #77c19a;
+    display: flex;
+    align-items: flex-end;
+}
+
+ul {
+    display: block;
+}
+
+.navbutton {
+    width: "20em";
+    align-self: flex-end;
+    height: 100%;
+    display: block;
+    border: black solid;
+    /* margin-left: auto; */
+}
+
+.navbutton:hover {
+    background-color: #5caa7f;
+}

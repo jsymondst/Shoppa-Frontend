@@ -7,6 +7,7 @@ import UserContext from "../../context/user.context";
 import ListView from "../listview/ListView";
 import { Route } from "react-router-dom";
 import AllLists from "./AllLists";
+import NavBar from "./NavBar";
 
 const Main = ({ match }) => {
     const { user, userControls } = useContext(UserContext);
@@ -14,7 +15,7 @@ const Main = ({ match }) => {
     return (
         <div>
             <h1>{`Welcome, ${user}`}</h1>
-
+            <NavBar />
             <Route exact path="/lists" render={() => <AllLists />} />
 
             <Route
